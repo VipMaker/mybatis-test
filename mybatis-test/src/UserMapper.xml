@@ -6,4 +6,10 @@
     <select id="selAll" resultType="pojo.User">
         select  * from tb_users
     </select>
+    <select id="selOne" resultType="pojo.User">
+        select * from tb_users where id=1
+    </select>
+    <select id="count" resultType="Integer">
+        select count(*) from tb_users
+    </select>
 </mapper>
