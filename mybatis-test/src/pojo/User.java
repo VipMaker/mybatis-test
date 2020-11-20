@@ -16,6 +16,14 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(String username, String password, String realname, Integer age,Date regTime) {
+        this.username = username;
+        this.password = password;
+        this.realname = realname;
+        this.age = age;
+        this.regTime = regTime;
+    }
+
     @Override
     public String toString() {
         return "User{" +

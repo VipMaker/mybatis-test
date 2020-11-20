@@ -1,4 +1,5 @@
-/lib/
-mybatis-test.iml
+mybatis-test/lib/
+mybatis-test/mybatis-test.iml
 .idea
-/out
+mybatis-test/out
+mybatis-test/.idea

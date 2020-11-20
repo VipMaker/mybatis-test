@@ -1,9 +1,12 @@
+package TestMyBatis;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 import pojo.User;
+import util.MyBatisUtil;
 
 import java.io.InputStream;
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.Set;
 
 public class TestMyBatis {
     public SqlSession getSqlSession() throws Exception{
-        //Resoures以流形式读取mybatis配置文件
+        //Resources以流形式读取mybatis配置文件
         InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
         //通过SqlSessionFactoryBuilder获得sqlFactory
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -22,7 +25,7 @@ public class TestMyBatis {
     }
     @Test
     public void testCount() throws Exception{
-        SqlSession sqlSession =getSqlSession();
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
         int count = sqlSession.selectOne("count");
         System.out.println(count);
         sqlSession.close();
