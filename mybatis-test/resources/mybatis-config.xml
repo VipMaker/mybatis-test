@@ -8,6 +8,9 @@
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
+    <typeAliases>
+        <package name="pojo"/>
+    </typeAliases>
     <!--配置运行模式，开发或服务模式 default指定模式-->
     <environments default="dev">
         <!--每个模式的具体配置-->
@@ -24,6 +27,8 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="UserMapper.xml" />
+<!--        <mapper resource="UserMapper.xml" />-->
+<!--        <mapper resource="InterfaceBind.xml"/>-->
+        <package name="mapper"/>
     </mappers>
 </configuration>

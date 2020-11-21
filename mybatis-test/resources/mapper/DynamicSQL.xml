@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DynamicSQL">
+    <sql id="base_sql">
+        select * from tb_users
+    </sql>
+    <select id="selByCondition" resultType="User">
+        <include refid="base_sql"/>
+        <where>
+            <if test="name!=null">
+                and username=#{name}
+            </if>
+            <if test="pwd!=null">
+                and password=#{pwd}
+            </if>
+        </where>
+    </select>
+    <select id="selByChoose" resultType="User">
+        <include refid="base_sql"/>
+        where
+        <choose>
+            <when test="username!=null">
+                username =#{username}
+            </when>
+            <otherwise>
+                id=#{id}
+            </otherwise>
+        </choose>
+    </select>
+    <select id="selByBind" resultType="User">
+        <bind name="realname" value="'%'+realname+'%'"/>
+        <include refid="base_sql"/>
+        <where>
+            <if test="realname!=null and realname!=''">
+                realname like #{realname}
+            </if>
+        </where>
+    </select>
+    <update id="updateById">
+            update
+            tb_users
+            <set>
+                <if test="username != null and username != ''">
+                    username=#{username},
+                </if>
+                <if test="age != null">
+                    age=#{age}
+                </if>
+            </set>
+            where
+            id=#{id}
+    </update>
+</mapper>
